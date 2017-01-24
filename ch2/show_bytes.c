@@ -44,10 +44,10 @@ void main() {
     byte_pointer bpz = (byte_pointer) pz;
     byte_pointer bpy = (byte_pointer) &y;
     if (is_little_endian()) {
-        *bpz = *((byte_pointer) &x);
-        *++bpz = *++bpy;
-        *++bpz = *++bpy;
-        *++bpz = *++bpy;
+        bpz[0] = *((byte_pointer) &x);
+        bpz[1] = bpy[1];
+        bpz[2] = bpy[2];
+        bpz[3] = bpy[3];
     }
 
     printf("%X\n", z);
