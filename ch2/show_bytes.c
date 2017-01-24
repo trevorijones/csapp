@@ -39,11 +39,20 @@ void main() {
     int x = 0x89ABCDEF;
     int y = 0x76543210;
     //   => 0x765432EF
-    int z = is_little_endian() ? x : y; 
+    int z;
+    int *pz = &z;
+    byte_pointer bpz = (byte_pointer) pz;
+    byte_pointer bpy = (byte_pointer) &y;
+    if (is_little_endian()) {
+        *bpz = *((byte_pointer) &x);
+        *++bpz = *++bpy;
+        *++bpz = *++bpy;
+        *++bpz = *++bpy;
+    }
+
+    printf("%X\n", z);
+
     show_int(z);
-
-    
-
 }
 
 
