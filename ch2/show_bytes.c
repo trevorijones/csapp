@@ -14,6 +14,10 @@ void show_int(int x) {
     show_bytes((byte_pointer) &x, sizeof(int));
 }
 
+void show_unsigned(unsigned x) {
+    show_bytes((byte_pointer) &x, sizeof(unsigned));
+}
+
 // returns 1 if the system is little endian or 0 if big endian
 int is_little_endian() {
     // int is 4 bytes either on 32 and 64 bits systems
@@ -22,6 +26,22 @@ int is_little_endian() {
     // 00 00 00 01 in big endian
     // grab 1rst byte
     return *((byte_pointer) &x);
+}
+
+//replace the i least significant byte in x by y
+//assuming x is a w bit size word and 0 < i < w/8 -1 is the position of a byte
+unsigned replace_byte(unsigned x, int i, unsigned y){
+    unsigned z;
+    int j;
+    byte_pointer bpz = (byte_pointer) &z;
+    byte_pointer bpx = (byte_pointer) &x;
+    //case big endian, i => i
+    //case little endian, i => size(x) - i
+    if (!is_little_endian()) i = sizeof(unsigned) - i;
+    for(j=0; j < sizeof(unsigned); j++)
+        bpz[j] = (j == i) ? y : bpx[j];
+    return z;
+
 }
 
 
@@ -53,6 +73,10 @@ void main() {
     printf("%X\n", z);
 
     show_int(z);
+    printf("replace_byte(0x12345678, 2, 0xAB) => 0x12AB5678\n");
+
+    unsigned z1 = replace_byte(0x12345678, 2, 0xAB);
+    show_unsigned(z1);
 }
 
 
