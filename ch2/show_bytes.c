@@ -21,7 +21,7 @@ void show_unsigned(unsigned x) {
 // returns 1 if the system is little endian or 0 if big endian
 int is_little_endian() {
     // int is 4 bytes either on 32 and 64 bits systems
-    unsigned int x = 1;
+    unsigned x = 1;
     // 01 00 00 00 in little endian
     // 00 00 00 01 in big endian
     // grab 1rst byte
@@ -75,8 +75,8 @@ void main() {
     show_int(z);
     printf("replace_byte(0x12345678, 2, 0xAB) => 0x12AB5678\n");
 
-    unsigned z1 = replace_byte(0x12345678, 2, 0xAB);
-    show_unsigned(z1);
+    show_unsigned(replace_byte(0x12345678, 2, 0xAB));
+    show_unsigned(replace_byte(0x12345678, 0, 0xAB));
 }
 
 
