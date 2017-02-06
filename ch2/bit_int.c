@@ -13,8 +13,9 @@ int main() {
   printf("%.2x \n", get_msb(0x78563412));
   //2.61
 
+  int x;
   //Any bit of x equals 1 <=>  all bits of x is 0 (false) <=> !!x
-  int x=0xff;
+  x=0xff;
   //!x is 0 if any bit is 1
   //!!x is 1 if !x is 0
   printf("%d\n",!!0x12345678);
@@ -26,5 +27,14 @@ int main() {
   //~x is 0 if all bit are 1. x is all 1 => ~x is all 0
   printf("%d\n", !!~(0));
   printf("%d\n", !!~(0xFFFFFFFF));
+
+  //Any bit in the least significant byte is 1
+  x = 0x12345678;
+  printf("%d\n", !!(x & 0xFF));
+  x = 0xFF000000;
+
+  printf("%d\n", !!(x & 0xFF));
+  //
+  //Any bit in the least significant byte is 0
 }
 
