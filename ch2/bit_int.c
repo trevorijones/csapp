@@ -1,5 +1,54 @@
 #include <stdio.h>
-/* Get most significant byte */
+/* Commented solutions to the Bit-Level Integer Coding Rule 
+   
+   This is structured in sections aligned to exercices numbers.
+
+   Assumptions:
+
+   * Integers are represented in two's-complement form.
+      || The most significant bit carries a wright and a sign.
+   * Right shift of signed data is performed arithmetically.
+      || 1000 >> 1 => 1100
+      || 1000 >> 2 => 1110
+      || 1000 >> 3 => 1111 
+      || The sign is preserved
+    * Data type int is w bit size. For some problems, you wil be given a specific 
+      value for w, but otherwise your code should work as long as w is a multiple of 8.
+      You can use the expression size(int) << 3 to compute w
+      || size(int) is given in bytes ( of 8 bit )
+      || size(int) << 3 => s * 2 * 2 * 2 => s * 8
+
+    Forbidden:
+
+    * Conditionals, loops, switch statements, function calls and  macro invocation
+    * Division, modulos and multiplication.
+    * Relative comparision operators ( <, >, <=, => )
+
+    Allowed operations: 
+    
+    * All bit-level and logic operations.
+      || bit-level: 
+      ||  * bit and: &
+      ||  * bit or : |
+      ||  * bit not: ~
+      ||  * bit xor: ^
+      ||
+      || logic:
+      ||  * and: &&
+      ||  *  or: ||
+      ||  * not:  !
+      || The logic operations treats the operands as integral values.
+      ||  * 0 is FALSE
+      ||  * Any other value is TRUE
+      || The result is an integral value of 0 or 1:
+      ||  * 0 is FALSE
+      ||  * 1 is TRUE
+      || Commonly used to normalize values:
+      ||  * !!x is 1 if and only if x is not 0 
+
+*/
+
+/*   Get most significant byte */
 int get_msb(int x) {
     //0x12345678 -> 0x12
     //0x12345678 -rs-> 0x11123456 -rs-> 0x11111234 -rs-> 0x11111112
